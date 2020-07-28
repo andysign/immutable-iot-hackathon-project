@@ -16,5 +16,6 @@ fi
 ./$GETH version
 ./$GETH --datadir ${datadir} --nodiscover --networkid ${networkid} \
     --unlock 0 --password <(echo ${pwd}) --allow-insecure-unlock \
-    --rpc --rpcapi eth,net,web3 --identity $(uname -n) \
+    --rpc --rpcaddr 0.0.0.0 --rpcapi eth,net,web3 --identity $(uname -n) \
     --syncmode full --lightkdf --rpccorsdomain "*" console
+# > log 2> log &
