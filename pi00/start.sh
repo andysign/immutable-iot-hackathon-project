@@ -15,8 +15,8 @@ elif [ "$(uname)" == "Linux" ]; then
 fi
 ./$GETH version
 ./$GETH --datadir ${datadir} --nodiscover --networkid ${networkid} \
-    --unlock 0 --nat extip:0.0.0.0 --password <(echo ${pwd}) \
-    --allow-insecure-unlock --rpc --rpcaddr 0.0.0.0 --rpcapi eth,net,web3 \
+    --unlock 0 --password <(echo ${pwd}) --allow-insecure-unlock \
+    --rpc --rpcaddr 0.0.0.0 --rpcapi eth,net,web3 \
     --rpccorsdomain "*" --identity $(uname -n) --syncmode full \
     --lightkdf console
 # > log 2> log &
