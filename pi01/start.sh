@@ -16,6 +16,6 @@ fi
 rm ../log
 ./$GETH --datadir ${datadir} --nodiscover --networkid ${networkid} \
     --unlock 0 --password <(echo ${pwd}) --allow-insecure-unlock \
-    --rpc --rpcaddr 0.0.0.0 --rpcapi eth,net,web3 \
+    --rpc --rpcaddr 0.0.0.0 --rpcapi eth,net,web3 --mine \
     --rpccorsdomain "*" --identity $(uname -n) --syncmode full \
-    --lightkdf $1 |& tee -a /home/pi/log
+    --lightkdf $1 2>&1 | tee -a $HOME/log
