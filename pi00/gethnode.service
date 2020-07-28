@@ -1,0 +1,19 @@
+# filename: gethnode.service
+# sudo cp gethnode.service /etc/systemd/system/gethnode.service
+# sudo systemctl start gethnode.service
+# sudo systemctl enable gethnode.service
+
+[Unit]
+Description=Ethereum Geth Node
+After=network.target
+
+[Service]
+ExecStart=/home/pi/pi00/start.sh
+WorkingDirectory=/home/pi/pi00
+StandardOutput=inherit
+StandardError=inherit
+Restart=always
+User=pi
+# RemainAfterExit=no
+[Install]
+WantedBy=multi-user.target
