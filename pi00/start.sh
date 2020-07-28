@@ -13,9 +13,9 @@ elif [ "$(uname)" == "Linux" ]; then
         GETH="geth-linux"
     fi;
 fi
+rm ../log
 ./$GETH --datadir ${datadir} --nodiscover --networkid ${networkid} \
     --unlock 0 --password <(echo ${pwd}) --allow-insecure-unlock \
     --rpc --rpcaddr 0.0.0.0 --rpcapi eth,net,web3 \
     --rpccorsdomain "*" --identity $(uname -n) --syncmode full \
-    --lightkdf $1
-#> log 2> log
+    --lightkdf $1 |& tee -a /home/pi/log
