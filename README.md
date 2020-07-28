@@ -62,24 +62,28 @@ require dhcp_server_identifier
 slaac private
 # Custom
 interface eth0
-#static ip_address=169.254.68.100
+metric 200;
+static ip_address=192.168.0.100/24 # Change
 static ip6_address=fe80::a2:c34f:caa:ee00/64 # Change
-static routers=169.254.68.1
-static domain_name_servers=192.168.43.1
+static routers=192.168.0.1 192.168.43.1
+static domain_name_servers=192.168.0.1 192.168.43.1 8.8.8.8
 interface wlan0
-static ip_address=192.168.43.100 # Change
+metric 300;
+static ip_address=192.168.43.100/24 # Change
 static routers=192.168.43.1
 static domain_name_servers=8.8.8.8 192.168.43.1
 ```
 
 ```sh
+static ip_address=192.168.0.101/24 # Second
 static ip6_address=fe80::a2:c34f:caa:ee01/64 # Second
 # [...]
 static ip_address=192.168.43.101 # Second
 ```
 
 ```sh
-static ip6_address=fe80::a2:c34f:caa:ee02/64 # Thrid
+static ip_address=192.168.0.102/24 # Third
+static ip6_address=fe80::a2:c34f:caa:ee02/64 # Third
 # [...]
 static ip_address=192.168.43.102 # Third
 ```
