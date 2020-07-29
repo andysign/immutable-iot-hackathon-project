@@ -51,7 +51,7 @@ class App(Frame):
 		Button(self,text="FullScr",command=self.fs_toggle).place(x=410, y=0)
 		self.master.bind("<Escape>", self.fs_toggle)
 
-		t1 = Text(main_frame, width=17, height=1, font=("Courier",13))
+		t1 = Text(main_frame, width=16, height=1, font=("Courier",13))
 		t1.tag_configure("center", justify='center')
 		t1.insert("1.0", "NODE STATS: ")
 		t1.tag_add("center", "1.0", "end")
@@ -78,7 +78,7 @@ class App(Frame):
 		self.blk_time_lbl = Label(bg="#777",fg="#aff",font=("Courier",9))
 		self.blk_time_lbl.place(x=92, y=68)
 
-		t4 = Text(main_frame, width=17, height=1, font=("Courier",13))
+		t4 = Text(main_frame, width=16, height=1, font=("Courier",13))
 		t4.tag_configure("center", justify='center')
 		t4.insert("1.0", "SMART CT STATS: ")
 		t4.tag_add("center", "1.0", "end")
