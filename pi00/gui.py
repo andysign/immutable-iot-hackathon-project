@@ -19,6 +19,7 @@ w3 = middleware.W3(web3)
 print("version", w3.version())
 filter = w3.createBlockFilter()
 print("getPiNumber", w3.getPiNumber())
+print("getContractVersion", w3.getContractVersion())
 
 # TkinterStuff
 wh = "480x320"

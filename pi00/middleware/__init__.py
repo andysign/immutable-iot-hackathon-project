@@ -1,5 +1,5 @@
 from web3.middleware import geth_poa_middleware
-import abi
+import middleware.abi
 
 CONTRACT_ADDRESS = "0x000000000000000000000000000000000000FFff"
 
