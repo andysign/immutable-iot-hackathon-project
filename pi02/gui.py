@@ -92,9 +92,6 @@ class App(Frame):
 		t3.pack()
 		t3.place(x=6, y=128)
 
-		self.ct_average_lbl = Label(bg="#777",fg="#aff",font=("Courier",9))
-		self.ct_average_lbl.place(x=92, y=128)
-
 
 		# T1.insert("1.0", "text")
 		# T1.tag_add("center", "1.0", "end")
