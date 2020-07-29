@@ -16,3 +16,13 @@ pi02/data02/geth/*data/*
 pi02/data02/geth/nodes/*
 pi02/data02/geth/LOCK
 pi02/data02/geth/transactions.rlp
+
+pi00/middleware/__pycache__/
+pi01/middleware/__pycache__/
+pi02/middleware/__pycache__/
+pi00/middleware/abi/__pycache__/
+pi01/middleware/abi/__pycache__/
+pi02/middleware/abi/__pycache__/
+pi00/middleware/__init__.pyc
+pi01/middleware/__init__.pyc
+pi02/middleware/__init__.pyc
