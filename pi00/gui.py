@@ -19,7 +19,7 @@ w3 = middleware.W3(web3)
 print("version", w3.version())
 filter = w3.createBlockFilter()
 print("getPiNumber", w3.getPiNumber())
-print("getContractVersion", w3.getContractVersion())
+print("getCtVersion", w3.getCtVersion())
 
 # TkinterStuff
 wh = "480x320"
@@ -27,10 +27,13 @@ w = int(wh.split("x")[0])
 h = int(wh.split("x")[1])
 if w3.getPiNumber() == 1:
 	bg_colors = [ "#eaeaea", "#aeaeae", "#c00000" ]
+	lbl_names = [ "Self", "B", "C" ]
 elif w3.getPiNumber() == 2:
 	bg_colors = [ "#c00000", "#aeaeae", "#eaeaea" ]
+	lbl_names = [ "Self", "A", "C" ]
 else:
 	bg_colors = [ "#aeaeae", "#eaeaea", "#c00000" ]
+	lbl_names = [ "Self", "A", "B" ]
 
 class App(Frame):
 	def __init__(self,master=None):
@@ -55,6 +58,7 @@ class App(Frame):
 		t1.tag_configure("center", justify='center')
 		t1.insert("1.0", "NODE STATS: ")
 		t1.tag_add("center", "1.0", "end")
+		t1.config(state=DISABLED)
 		t1.pack()
 		t1.place(x=6, y=16)
 
@@ -62,6 +66,7 @@ class App(Frame):
 		t2.tag_configure("center", justify='left')
 		t2.insert("1.0", "Block Height:")
 		t2.tag_add("center", "1.0", "end")
+		t2.config(state=DISABLED)
 		t2.pack()
 		t2.place(x=6, y=48)
 
@@ -72,6 +77,7 @@ class App(Frame):
 		t3.tag_configure("center", justify='left')
 		t3.insert("1.0", "LastBlkTime:")
 		t3.tag_add("center", "1.0", "end")
+		t3.config(state=DISABLED)
 		t3.pack()
 		t3.place(x=6, y=68)
 
@@ -82,23 +88,33 @@ class App(Frame):
 		t4.tag_configure("center", justify='center')
 		t4.insert("1.0", "SMART CT STATS: ")
 		t4.tag_add("center", "1.0", "end")
+		t4.config(state=DISABLED)
 		t4.pack()
 		t4.place(x=6, y=96)
 
-		t3 = Text(main_frame, width=19, height=1, font=("Courier",9))
-		t3.tag_configure("center", justify='left')
-		t3.insert("1.0", "AverageMeasurement:")
-		t3.tag_add("center", "1.0", "end")
-		t3.pack()
-		t3.place(x=6, y=128)
+		t5 = Text(main_frame, width=13, height=1, font=("Courier",9))
+		t5.tag_configure("center", justify='left')
+		t5.insert("1.0", "AverageMVal:")
+		t5.tag_add("center", "1.0", "end")
+		t5.config(state=DISABLED)
+		t5.pack()
+		t5.place(x=6, y=128)
 
 		self.ct_average_lbl = Label(bg="#777",fg="#aff",font=("Courier",9))
 		self.ct_average_lbl.place(x=92, y=128)
 
+		t6 = Text(main_frame, width=15, height=1, font=("Courier",13))
+		t6.tag_configure("center", justify='center')
+		t6.insert("1.0", "FakeValREADING")
+		t6.tag_add("center", "1.0", "end")
+		t6.config(state=DISABLED)
+		t6.pack()
+		t6.place(x=6, y=154)
 
-		# T1.insert("1.0", "text")
-		# T1.tag_add("center", "1.0", "end")
-		# T1.pack()
+		b1 = Button(main_frame, width=3, text="0 ", fg="black")
+		b1.place(x=6, y=178)
+
+
 		self.update_display()
 
 
@@ -114,10 +130,11 @@ class App(Frame):
 		blk_timestamp = time.ctime(blk_timestamp)
 		blk_timestamp = blk_timestamp.split(" ")[3]
 		self.blk_time_lbl.configure(text=blk_timestamp)
+		ct_average = w3.getMeasureAverage()
+		self.ct_average_lbl.configure(text=ct_average)
 		self.after(1000, self.update_display)
 
-win = Tk()
-# win.update_idletasks()
+win = Tk() # win.update_idletasks()
 win.wm_title("GethNodeGUI")
 win.geometry(wh)
 x = (win.winfo_screenwidth() // 2) - (w // 2)
@@ -136,40 +153,3 @@ win.mainloop()
 # 	if len(new_blocks)>0:
 # 		print("NewBlock")
 # 		print(w3.getBlockNumber())
-
-# window = Tk()
-# window.wm_title("GethNodeGUI")
-# window.geometry("480x320")
-
-# root.attributes("-fullscreen", True) 	# set to fullscreen
-
-# from tkinter import *
-#
-# from tkinter import *
-#
-# class Window(Frame):
-#
-# 	def __init__(self, master=None):
-# 		Frame.__init__(self, master)
-# 		self.master = master
-#
-# 		# widget can take all window
-# 		self.pack(fill=BOTH, expand=1)
-#
-# 		text = Label(self, text="Just do it")
-# 		text.place(x=70,y=90)
-#
-# 		# create button, link it to clickExitButton()
-# 		#exitButton = Button(self, text="Exit", command=self.clickExitButton)
-#
-# 		# place button at (0,0)
-# 		#exitButton.place(x=0, y=0)
-#
-# 	def clickExitButton(self):
-# 		exit()
-#
-# root = Tk()
-# app = Window(root)
-# root.wm_title("Tkinter button")
-# root.geometry("480x320")
-# root.mainloop()

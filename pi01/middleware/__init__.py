@@ -1,5 +1,6 @@
 from web3.middleware import geth_poa_middleware
-import middleware.abi
+try: import middleware.abi
+except: import abi
 
 CONTRACT_ADDRESS = "0x000000000000000000000000000000000000FFff"
 
@@ -24,12 +25,18 @@ class W3:
 		return self.web3.eth.coinbase
 	def getLatestBlockTimestamp(self):
 		return self.web3.eth.getBlock("latest").timestamp
-	def getContractVersion(self):
+	def getCtVersion(self):
 		ab = abi.getAbi()
 		ct = self.ct_address
 		smart_ct = self.web3.eth.contract(address=ct, abi=ab)
 		v = smart_ct.functions.version().call()
 		return v
+	def getMeasureAverage(self):
+		ab = abi.getAbi()
+		ct = self.ct_address
+		smart_ct = self.web3.eth.contract(address=ct, abi=ab)
+		average = smart_ct.functions.average().call()
+		return average / 1000
 	def getPiNumber(self):
 		num = self.getCoinbase()
 		num = num[2:]
@@ -47,5 +54,6 @@ if __name__ == "__main__":
 	print("createBlockFilter", w3.createBlockFilter())
 	print("getCoinbase", w3.getCoinbase())
 	print("getLatestBlockTimestamp", w3.getLatestBlockTimestamp())
-	print("getContractVersion", w3.getContractVersion())
+	print("getCtVersion", w3.getCtVersion())
+	print("getMeasureAverage", w3.getMeasureAverage())
 	print("getPiNumber", w3.getPiNumber())
