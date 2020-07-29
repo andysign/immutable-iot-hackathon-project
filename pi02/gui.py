@@ -39,7 +39,8 @@ class App(Frame):
 	def __init__(self,master=None):
 		Frame.__init__(self, master)
 		self.master = master
-		self.state = False
+		self.fs_state = False
+		self.last_val = 0
 		self.master.attributes('-fullscreen', False)
 		self.pack(fill=BOTH, expand=1)
 		main_frame =   Frame(
@@ -111,16 +112,33 @@ class App(Frame):
 		t6.pack()
 		t6.place(x=6, y=154)
 
-		b1 = Button(main_frame, width=3, text="0 ", fg="black")
-		b1.place(x=6, y=178)
+		t6 = Text(main_frame, width=13, height=1, font=("Courier",9))
+		t6.tag_configure("center", justify='left')
+		t6.insert("1.0", "LastVal:")
+		t6.tag_add("center", "1.0", "end")
+		t6.config(state=DISABLED)
+		t6.pack()
+		t6.place(x=6, y=184)
 
+		self.last_val_lbl = Label(bg="#777",fg="#aff",font=("Courier",9))
+		self.last_val_lbl.place(x=92, y=184)
+
+		b1 = Button(self, width=3, text="0 ", command=lambda:self.ct_set(0))
+		b1.place(x=6, y=210)
+		b2 = Button(self, width=3, text="10", command=lambda:self.ct_set(10))
+		b2.place(x=86, y=210)
 
 		self.update_display()
 
 
 	def fs_toggle(self, event=None):
-		self.state = not self.state  # Just toggling the boolean
-		self.master.attributes("-fullscreen", self.state)
+		self.fs_state = not self.fs_state  # Just toggling the boolean
+		self.master.attributes("-fullscreen", self.fs_state)
+		return "break"
+
+	def ct_set(self, v):
+		self.last_val = v
+		w3.setFakeReading(v)
 		return "break"
 
 	def update_display(self):
@@ -132,6 +150,7 @@ class App(Frame):
 		self.blk_time_lbl.configure(text=blk_timestamp)
 		ct_average = w3.getMeasureAverage()
 		self.ct_average_lbl.configure(text=ct_average)
+		self.last_val_lbl.configure(text=self.last_val)
 		self.after(1000, self.update_display)
 
 win = Tk() # win.update_idletasks()
