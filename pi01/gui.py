@@ -126,9 +126,15 @@ class App(Frame):
 		b1 = Button(self, width=2, text="0 ", command=lambda:self.ct_set(0))
 		b1.place(x=6, y=210)
 		b2 = Button(self, width=2, text="5 ", command=lambda:self.ct_set(5))
-		b2.place(x=50, y=210)
+		b2.place(x=52, y=210)
 		b3 = Button(self, width=2, text="10", command=lambda:self.ct_set(10))
-		b3.place(x=94, y=210)
+		b3.place(x=98, y=210)
+		b4 = Button(self, width=2, text="15", command=lambda:self.ct_set(15))
+		b4.place(x=6, y=240)
+		b5 = Button(self, width=2, text="20", command=lambda:self.ct_set(20))
+		b5.place(x=52, y=240)
+		b6 = Button(self, width=2, text="25", command=lambda:self.ct_set(25))
+		b6.place(x=98, y=240)
 
 		self.update_display()
 
