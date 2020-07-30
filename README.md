@@ -182,3 +182,17 @@ Once you compiled your smart contract you can add the bytecode and whatever glob
 ```
 
 ---
+
+# Prevent The Screen From Turning Off
+
+To prevent screen from becoming black use a screensaver and disable it.
+
+Install
+
+```sh
+sudo apt-get install xscreensaver
+```
+
+Once installed, go to Rpi's desktop _Menu_, left top corner, go to preference --> screensaver then you will see a screen saver main menu. In the mode drop-down menu, select `disable screensaver` then close the window.
+
+---
