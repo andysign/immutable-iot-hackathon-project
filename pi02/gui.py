@@ -27,13 +27,13 @@ w = int(wh.split("x")[0])
 h = int(wh.split("x")[1])
 if w3.getPiNumber() == 1:
 	bg_colors = [ "#eaeaea", "#aeaeae", "#c00000" ]
-	lbl_names = [ "Self", "B", "C" ]
+	lbl_names = [ "Self", "A", "C" ]
 elif w3.getPiNumber() == 2:
 	bg_colors = [ "#c00000", "#aeaeae", "#eaeaea" ]
-	lbl_names = [ "Self", "A", "C" ]
+	lbl_names = [ "Self", "A", "B" ]
 else:
 	bg_colors = [ "#aeaeae", "#eaeaea", "#c00000" ]
-	lbl_names = [ "Self", "A", "B" ]
+	lbl_names = [ "Self", "B", "C" ]
 
 class App(Frame):
 	def __init__(self,master=None):
@@ -52,7 +52,9 @@ class App(Frame):
 		last_frame =   Frame(
 			self, background=bg_colors[2], width=160, height=h
 		).grid(row=0, column=2, sticky="nsew")
-		Button(self,text="FullScr",command=self.fs_toggle).place(x=410, y=0)
+		Button(
+			text="FullScr",command=self.fs_toggle,height=1,font=("Courier",10)
+		).place(x=410, y=0)
 		self.master.bind("<Escape>", self.fs_toggle)
 
 		t1 = Text(main_frame, width=14, height=1, font=("Courier",13))
@@ -142,6 +144,46 @@ class App(Frame):
 		b9 = Button(width=2,text="∞",bg='red',command=lambda:self.ct_set(1000))
 		b9.place(x=106, y=276)
 
+		t7 = Text(main_frame, width=14, height=1, font=("Courier",13))
+		t7.tag_configure("center", justify='center')
+		t7.insert("1.0", "NODE "+lbl_names[1]+" STATS:")
+		t7.tag_add("center", "1.0", "end")
+		t7.config(state=DISABLED)
+		t7.pack()
+		t7.place(x=166, y=16)
+
+		t8 = Text(main_frame, width=13, height=1, font=("Courier",9))
+		t8.tag_configure("center", justify='left')
+		t8.insert("1.0", "measurement"+lbl_names[1]+":")
+		t8.tag_add("center", "1.0", "end")
+		t8.config(state=DISABLED)
+		t8.pack()
+		t8.place(x=166, y=48)
+
+		self.last_middle_lbl = Label(bg="#777",fg="#aff",font=("Courier",9))
+		self.last_middle_lbl.place(x=246, y=48)
+
+		t9 = Text(main_frame, width=14, height=1, font=("Courier",13))
+		t9.tag_configure("center", justify='center')
+		t9.insert("1.0", "NODE "+lbl_names[2]+" STATS:")
+		t9.tag_add("center", "1.0", "end")
+		t9.config(state=DISABLED)
+		t9.pack()
+		t9.place(x=326, y=16)
+
+		t0 = Text(main_frame, width=13, height=1, font=("Courier",9))
+		t0.tag_configure("center", justify='left')
+		t0.insert("1.0", "measurement"+lbl_names[2]+":")
+		t0.tag_add("center", "1.0", "end")
+		t0.config(state=DISABLED)
+		t0.pack()
+		t0.place(x=326, y=48)
+
+		self.last_right_lbl = Label(bg="#777",fg="#aff",font=("Courier",9))
+		self.last_right_lbl.place(x=406, y=48)
+
+
+
 		self.update_display()
 
 
@@ -165,6 +207,10 @@ class App(Frame):
 		ct_average = w3.getMeasureAverage()
 		self.ct_average_lbl.configure(text=ct_average)
 		self.last_val_lbl.configure(text=self.last_val)
+		last_middle = w3.getOtherMeasurement(lbl_names[1])
+		self.last_middle_lbl.configure(text=last_middle)
+		last_right = w3.getOtherMeasurement(lbl_names[2])
+		self.last_right_lbl.configure(text=last_middle)
 		self.after(1000, self.update_display)
 
 win = Tk() # win.update_idletasks()
