@@ -87,4 +87,6 @@ if __name__ == "__main__":
 	print("getMeasureAverage", w3.getMeasureAverage())
 	print("setFakeReading", w3.setFakeReading(10))
 	print("getMeasurementA", w3.getMeasurementA())
+	print("getMeasurementB", w3.getMeasurementB())
+	print("getMeasurementC", w3.getMeasurementC())
 	print("getPiNumber", w3.getPiNumber())
