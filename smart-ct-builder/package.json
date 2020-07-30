@@ -1,0 +1,16 @@
+{
+  "name": "smart-ct-builder",
+  "version": "1.0.0",
+  "description": "",
+  "main": "",
+  "scripts": {
+    "compile": "node_modules/.bin/solcjs contracts/Measure.sol --output-dir output/ --bin --abi",
+    "version": "node_modules/.bin/solcjs --version",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "solc": "^0.5.16"
+  }
+}
