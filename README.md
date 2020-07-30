@@ -103,3 +103,70 @@ sudo ./MHS35-show
 As described on the official [Lcd Wiki website](http://www.lcdwiki.com/MHS-3.5inch_RPi_Display).
 
 ---
+
+# Install And Prepare Miniconda
+
+To make things simple and do the project in such a way so that there is the same version of python and libraries everywhere one must use Miniconda.
+
+Download miniconda in your folder, e.g.: _pi00_ with:
+
+`wget http://repo.continuum.io/miniconda/Miniconda3-latest-Linux-armv7l.sh`
+
+Or for Macos `Miniconda3-latest-MacOSX-x86_64.sh`.
+
+After that install miniconda in the same folder e.g: `/home/pi/pi00/miniconda` with (read TandC then paste the path and finally say yes to bashrc setup):
+
+`bash Miniconda3-latest-Linux-armv7l.sh`
+
+Then activate it with (optional, you can `source .bashrc` before that): `source ./miniconda/bin/activate root`
+
+Note that you can deactivate it with `conda deactivate`.
+
+**Unfortunately Miniconda for ARM is old and does not include Python 3.5 or grater!**
+
+---
+
+# Prepare The Python Env
+
+Install Virtualenv with:
+
+```sh
+sudo apt install virtualenv # OR sudo easy_install-3.7 pip ; pip install virtualenv
+```
+
+Then just execute something like:
+
+```sh
+virtualenv --python=/usr/bin/python3.7 ~/pi00
+source ~/pi00/bin/activate
+```
+
+---
+
+# Smart Contract Builder
+
+The main folder for the smart contract builder is `smart-ct-builder/`. This is designed to help compile the smart contract. Here you can put your smart contract in `contracts/`.
+
+Use _Node v10.18.1_ or highter and _Npm npm@6.14.4_ or higher.
+
+To compile the smart contract, just type (while your working dir is smart-ct-builder) the following:
+
+```sh
+./compile.sh
+```
+
+Once you compiled your smart contract you can add the bytecode and whatever global variable you might have in the genesis file so tha smart contract gets embedded in the genesis block. The genesis file will look like the following:
+
+```json
+    "..": "...",
+    "alloc": {
+        "000000000000000000000000000000000000FFff": {
+            "balance": "0x0",
+            "code":"0x606060",
+            "storage":{ "11bbe8db4e347b4e8c937c1c8370e4b5ed33adb3db69cbdb7a38e1e50b1b82fa":"1234ff" }
+        }
+    },
+    "...": "..."
+```
+
+---
