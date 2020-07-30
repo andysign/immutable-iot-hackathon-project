@@ -161,11 +161,11 @@ class App(Frame):
 		t8.place(x=166, y=154)
 
 		self.last_middle_lbl = Label(bg="#777",fg="#aff",font=("Courier",9))
-		self.last_middle_lbl.place(x=246, y=154)
+		self.last_middle_lbl.place(x=256, y=154)
 
 		t9 = Text(main_frame, width=14, height=1, font=("Courier",13))
 		t9.tag_configure("center", justify='center')
-		t9.insert("1.0", "NODE "+lbl_names[2]+" STATS:")
+		t9.insert("1.0", ""+lbl_names[2]+" STATS:")
 		t9.tag_add("center", "1.0", "end")
 		t9.config(state=DISABLED)
 		t9.pack()
@@ -180,7 +180,7 @@ class App(Frame):
 		t0.place(x=326, y=154)
 
 		self.last_right_lbl = Label(bg="#777",fg="#aff",font=("Courier",9))
-		self.last_right_lbl.place(x=406, y=154)
+		self.last_right_lbl.place(x=416, y=154)
 
 
 
