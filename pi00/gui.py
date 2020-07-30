@@ -108,7 +108,7 @@ class App(Frame):
 
 		t6 = Text(main_frame, width=15, height=1, font=("Courier",13))
 		t6.tag_configure("center", justify='center')
-		t6.insert("1.0", "FakeValREADING")
+		t6.insert("1.0", "ManualREADING")
 		t6.tag_add("center", "1.0", "end")
 		t6.config(state=DISABLED)
 		t6.pack()
