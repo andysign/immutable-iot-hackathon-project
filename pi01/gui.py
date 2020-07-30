@@ -194,7 +194,6 @@ class App(Frame):
 
 	def ct_set(self, v):
 		self.last_val = v
-		w3.setFakeReading(v)
 		return "break"
 
 	def update_display(self):
@@ -206,12 +205,13 @@ class App(Frame):
 		self.blk_time_lbl.configure(text=blk_timestamp)
 		ct_average = w3.getMeasureAverage()
 		self.ct_average_lbl.configure(text=ct_average)
+		w3.setFakeReading(self.last_val)
 		self.last_val_lbl.configure(text=self.last_val)
 		last_middle = w3.getOtherMeasurement(lbl_names[1])
 		self.last_middle_lbl.configure(text=last_middle)
 		last_right = w3.getOtherMeasurement(lbl_names[2])
 		self.last_right_lbl.configure(text=last_middle)
-		self.after(1000, self.update_display)
+		self.after(1950, self.update_display)
 
 win = Tk() # win.update_idletasks()
 win.wm_title("GethNodeGUI")
@@ -223,7 +223,7 @@ win.geometry('{}x{}+{}+{}'.format(w, h, x, y)) # win.resizable(False, False)
 # win.grid_columnconfigure(1, weight=1)
 # win.grid_columnconfigure(2, weight=1)
 app = App(win)
-win.after(1000, app.update_display)
+win.after(1950, app.update_display)
 win.mainloop()
 
 # for i in range(30):
