@@ -45,7 +45,27 @@ class W3:
 		smart_ct = self.web3.eth.contract(address=ct, abi=ab)
 		tx = smart_ct.functions.set(val).transact()
 		return tx.hex()
-		# eth.defaultAccount
+	def getMeasurementA(self):
+		ab = abi.getAbi()
+		ct = self.ct_address
+		smart_ct = self.web3.eth.contract(address=ct, abi=ab)
+		return smart_ct.functions.measurementA().call() / 1000
+	def getMeasurementB(self):
+		ab = abi.getAbi()
+		ct = self.ct_address
+		smart_ct = self.web3.eth.contract(address=ct, abi=ab)
+		return smart_ct.functions.measurementB().call() / 1000
+	def getMeasurementC(self):
+		ab = abi.getAbi()
+		ct = self.ct_address
+		smart_ct = self.web3.eth.contract(address=ct, abi=ab)
+		return smart_ct.functions.measurementC().call() / 1000
+	def getOtherMeasurement(self, other):
+		m = 0
+		if other == "A": m = self.getMeasurementA()
+		if other == "B": m = self.getMeasurementB()
+		if other == "C": m = self.getMeasurementC()
+		return int(m)
 	def getPiNumber(self):
 		num = self.getCoinbase()
 		num = num[2:]
@@ -66,4 +86,5 @@ if __name__ == "__main__":
 	print("getCtVersion", w3.getCtVersion())
 	print("getMeasureAverage", w3.getMeasureAverage())
 	print("setFakeReading", w3.setFakeReading(10))
+	print("getMeasurementA", w3.getMeasurementA())
 	print("getPiNumber", w3.getPiNumber())
