@@ -53,8 +53,8 @@ class App(Frame):
 			self, background=bg_colors[2], width=160, height=h
 		).grid(row=0, column=2, sticky="nsew")
 		Button(
-			text="FullScr",command=self.fs_toggle,height=1,font=("Courier",10)
-		).place(x=410, y=0)
+			text="FullScr",command=self.fs_toggle,height=1,font=("Courier",9)
+		).place(x=415, y=0)
 		self.master.bind("<Escape>", self.fs_toggle)
 
 		t1 = Text(main_frame, width=14, height=1, font=("Courier",13))
@@ -158,10 +158,10 @@ class App(Frame):
 		t8.tag_add("center", "1.0", "end")
 		t8.config(state=DISABLED)
 		t8.pack()
-		t8.place(x=166, y=48)
+		t8.place(x=166, y=154)
 
 		self.last_middle_lbl = Label(bg="#777",fg="#aff",font=("Courier",9))
-		self.last_middle_lbl.place(x=246, y=48)
+		self.last_middle_lbl.place(x=246, y=154)
 
 		t9 = Text(main_frame, width=14, height=1, font=("Courier",13))
 		t9.tag_configure("center", justify='center')
@@ -177,10 +177,10 @@ class App(Frame):
 		t0.tag_add("center", "1.0", "end")
 		t0.config(state=DISABLED)
 		t0.pack()
-		t0.place(x=326, y=48)
+		t0.place(x=326, y=154)
 
 		self.last_right_lbl = Label(bg="#777",fg="#aff",font=("Courier",9))
-		self.last_right_lbl.place(x=406, y=48)
+		self.last_right_lbl.place(x=406, y=154)
 
 
 
