@@ -123,10 +123,12 @@ class App(Frame):
 		self.last_val_lbl = Label(bg="#777",fg="#aff",font=("Courier",9))
 		self.last_val_lbl.place(x=92, y=184)
 
-		b1 = Button(self, width=3, text="0 ", command=lambda:self.ct_set(0))
+		b1 = Button(self, width=2, text="0 ", command=lambda:self.ct_set(0))
 		b1.place(x=6, y=210)
-		b2 = Button(self, width=3, text="10", command=lambda:self.ct_set(10))
-		b2.place(x=86, y=210)
+		b2 = Button(self, width=2, text="5 ", command=lambda:self.ct_set(5))
+		b2.place(x=50, y=210)
+		b3 = Button(self, width=2, text="10", command=lambda:self.ct_set(10))
+		b3.place(x=94, y=210)
 
 		self.update_display()
 
