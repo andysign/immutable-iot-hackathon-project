@@ -37,6 +37,15 @@ class W3:
 		smart_ct = self.web3.eth.contract(address=ct, abi=ab)
 		average = smart_ct.functions.average().call()
 		return average / 1000
+	def setFakeReading(self, val):
+		val = int(val)
+		self.web3.eth.defaultAccount = self.getCoinbase()
+		ab = abi.getAbi()
+		ct = self.ct_address
+		smart_ct = self.web3.eth.contract(address=ct, abi=ab)
+		tx = smart_ct.functions.set(val).transact()
+		return tx.hex()
+		# eth.defaultAccount
 	def getPiNumber(self):
 		num = self.getCoinbase()
 		num = num[2:]
@@ -56,4 +65,5 @@ if __name__ == "__main__":
 	print("getLatestBlockTimestamp", w3.getLatestBlockTimestamp())
 	print("getCtVersion", w3.getCtVersion())
 	print("getMeasureAverage", w3.getMeasureAverage())
+	print("setFakeReading", w3.setFakeReading(10))
 	print("getPiNumber", w3.getPiNumber())
