@@ -143,6 +143,18 @@ source ~/pi00/bin/activate
 
 ---
 
+# Install Python Dependencies
+
+The pip install part is very easy here because there is a `requirements.txt` file in every _pyXX_ folder (this includes the latest version of [Web3.py](https://web3py.readthedocs.io/en/stable/quickstart.html) library).
+
+Just execute (after you source with `start-virtualenv.sh` like described before):
+
+```sh
+pip install -r requirements.txt
+```
+
+---
+
 # Smart Contract Builder
 
 The main folder for the smart contract builder is `smart-ct-builder/`. This is designed to help compile the smart contract. Here you can put your smart contract in `contracts/`.
