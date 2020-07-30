@@ -163,7 +163,7 @@ class App(Frame):
 		self.last_middle_lbl = Label(bg="#777",fg="#aff",font=("Courier",9))
 		self.last_middle_lbl.place(x=256, y=154)
 
-		t9 = Text(main_frame, width=14, height=1, font=("Courier",13))
+		t9 = Text(main_frame, width=10, height=1, font=("Courier",13))
 		t9.tag_configure("center", justify='center')
 		t9.insert("1.0", ""+lbl_names[2]+" STATS:")
 		t9.tag_add("center", "1.0", "end")
